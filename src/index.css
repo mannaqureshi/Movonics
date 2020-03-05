@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap");
+.siq_bR {
+  bottom: 5% !important;
+  right: 2% !important;
+}
+.zsiq_floatmain.zsiq_theme1 .zsiq_flt_rel {
+  background-color: #f99f4e !important;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+div a {
+  font-size: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+div p {
+  margin-bottom: 0px;
+}
+
+html {
+  font-size: 62.25%;
+}
+
+.page {
+  padding: 5rem 0rem;
+}
+
+.black {
+  color: #333333;
+}
+.orange {
+  color: #f99f4e;
+}
+.blue {
+  color: #22d1ee;
+}
+
+.grey {
+  color: #aaaaaa;
+}
+p.heading-large {
+  font-size: 5rem;
+  font-weight: 900;
+}
+p.heading-semi-large {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+p.heading-primary {
+  font-size: 4rem;
+  font-weight: 900;
+}
+p.heading-secondary {
+  font-size: 3.2rem;
+  font-weight: 500;
+}
+
+p.text-primary {
+  font-size: 2rem;
+}
+p.text-secondary {
+  font-size: 1.2rem;
+}
+.container-fluid {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  display: block;
+  max-width: 90%;
+  width: 90%;
+  padding: 0px 10px;
+  margin: 0 auto;
+}
+
+.shadow {
+  -webkit-box-shadow: 6px 7px 25px -12px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 6px 7px 25px -12px rgba(0, 0, 0, 0.35);
+  box-shadow: 6px 7px 25px -12px rgba(0, 0, 0, 0.35);
+}
+
+@media only screen and (max-width: 767px) {
+  .container-fluid {
+    max-width: 100%;
+    width: 100%;
+  }
+  .container {
+    max-width: 95%;
+    width: 95%;
+  }
+  .page {
+    padding: 1rem 0rem;
+  }
+
+  p.heading-large {
+    font-size: 3rem;
+    font-weight: 900;
+  }
+  p.heading-semi-large {
+    font-size: 2.5rem;
+    font-weight: 900;
+  }
+  p.heading-primary {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  p.heading-secondary {
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+
+  p.text-primary {
+    font-size: 1.4rem;
+  }
+  p.text-secondary {
+    font-size: 1rem;
+  }
+
+  ion-icon {
+    font-size: 3rem;
+  }
+}

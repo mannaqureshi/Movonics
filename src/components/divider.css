@@ -1,0 +1,51 @@
+.divider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.divider-container img {
+  width: 9rem;
+  animation: move infinite ease-in-out 3s;
+}
+
+.divider {
+  position: relative;
+  background-color: #fff;
+  padding: 10px 20px;
+}
+
+.divider::before {
+  content: "";
+  display: block;
+  width: 150%;
+  text-align: center;
+  height: 3px;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  background-color: #888;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes move {
+  from {
+    transform: translate(-200%);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(200%);
+    opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .divider-container img {
+    width: 5rem;
+    animation: move infinite ease-in-out 3s;
+  }
+}

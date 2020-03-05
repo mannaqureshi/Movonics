@@ -1,0 +1,48 @@
+.masterform {
+  padding: 4rem;
+  margin-bottom: 5rem;
+  width: 40%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form .form-field {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.form label::after {
+  content: " *";
+  color: #fc436d;
+}
+
+.ant-select-selection,
+.ant-input:placeholder-shown,
+.masterform {
+  border: 1px solid #f99f4e !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .masterform {
+    padding: 2rem;
+    width: 90%;
+  }
+
+  .ant-form.ant-form-horizontal.form {
+    width: 100%;
+    margin: 2rem auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form > * {
+    width: 100% !important;
+  }
+}

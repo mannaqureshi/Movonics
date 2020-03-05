@@ -1,0 +1,26 @@
+.sidebar {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #fff;
+  width: 80vw;
+  height: 100vh;
+  box-shadow: 15px 0px 50px -20px rgba(0, 0, 0, 0.35);
+  transform: translateX(200%);
+  transition: all 0.3s ease-in;
+}
+
+.sidebar-container {
+  margin-top: 10rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.sidebar-container > * {
+  margin-bottom: 2rem;
+}
+
+.sidebar-open {
+  transform: translateX(0%);
+}

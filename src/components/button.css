@@ -1,0 +1,29 @@
+.custom-button,
+input[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 60px;
+  border: 1px solid #f99f4e;
+  background-color: #f99f4e;
+  color: #fff;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background-color: #fff;
+  color: #f99f4e;
+  border: 1px solid #f99f4e;
+}
+
+.whatsapp {
+  border: 1px solid #25d366;
+  background-color: #25d366;
+  color: fff;
+}
+
+.whatsapp:hover {
+  border: 1px solid #25d366;
+  background-color: #fff;
+  color: #25d366;
+}
