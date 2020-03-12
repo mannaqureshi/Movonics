@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 
-import asset2 from "./content/family.svg";
-import asset3 from "./content/handyman.svg";
-import asset4 from "./content/commercial.svg";
+import asset1 from "./content/1.png";
+import asset2 from "./content/2.png";
+import asset3 from "./content/3.png";
+import asset4 from "./content/handyman.svg";
 import asset5 from "./content/paint.svg";
 import asset6 from "./content/process.svg";
 import { CustomButton } from "./components/button";
@@ -48,7 +49,6 @@ export const sections = [
             <div>{CallToAction.second}</div>
           </div>
         )}
-
         <p
           style={{ color: GlobalConfig.black }}
           className="heading-large black"
@@ -83,7 +83,6 @@ export const sections = [
     traditional: true
   },
   {
-    isSection: "Our Services",
     content: toBeChanged => (
       <Fragment>
         <p className="heading-primary black">
@@ -103,7 +102,7 @@ export const sections = [
         </p>
       </Fragment>
     ),
-    imageLink: asset2,
+    imageLink: asset1,
     traditional: false
   },
 
@@ -124,7 +123,7 @@ export const sections = [
         </p>
       </Fragment>
     ),
-    imageLink: asset4,
+    imageLink: asset2,
     traditional: true
   },
   {
@@ -155,7 +154,7 @@ export const sections = [
         </p>
       </Fragment>
     ),
-    imageLink: asset5,
+    imageLink: asset3,
     traditional: false
   },
   {
@@ -174,7 +173,7 @@ export const sections = [
         </p>
       </Fragment>
     ),
-    imageLink: asset3,
+    imageLink: asset4,
     traditional: true
   }
 ];

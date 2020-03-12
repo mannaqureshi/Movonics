@@ -67,6 +67,9 @@ export const Faqs = () => {
   return (
     <Fragment>
       <div className="container">
+        <p style={{ textAlign: "center" }} className="heading-secondary blue">
+          FAQs
+        </p>
         {faqs.map((e, i) => {
           return (
             <Collapse

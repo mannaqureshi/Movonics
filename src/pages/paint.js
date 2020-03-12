@@ -347,7 +347,7 @@ export const PaintForm = withRouter(
 export const Paint = () => {
   return (
     <Fragment>
-      <SectionList sections={sections}></SectionList>
+      <SectionList place="UAE" sections={sections}></SectionList>
     </Fragment>
   );
 };
