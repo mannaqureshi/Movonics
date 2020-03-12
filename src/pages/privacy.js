@@ -4,15 +4,11 @@ import { Link } from "react-router-dom";
 const policies = [
   {
     heading: "Privacy Policy",
-    content: (
-      <p>
-        Movonics is committed to protect the rights of its online users
+    content: `Movonics is committed to protect the rights of its online users
         regarding data collection and storage. We value our relationship with
         our customers and take care of their privacy concerns very seriously.
         Movonics collect and store information in a rightful way and keep
-        identity of its users confidential.
-      </p>
-    )
+        identity of its users confidential.`
   },
   {
     heading: "Use of Information",
@@ -35,47 +31,41 @@ const policies = [
   },
   {
     heading: "Personal Information Collected",
-    content: (
-      <p>
-        When you fill out a form on our website (
-        {<Link to="/">www.movonics.com</Link>}), you share your full name, email
+    content: `When you fill out a form on our website 
+        ${(
+          <Link to="/">${"www.movonics.com"}</Link>
+        )}, you share your full name, email
         address and telephone number with us. Movonics may also collect your IP
         address, browser type and location of your device. We also collect
         information regarding usage details that how many times you visit our
         website and which pages of our websites you view during your visit.
         Note: If any government owned regulatory authority asks us to share
         personal information of our users which we have collected, then we are
-        bound to follow their instructions.
-      </p>
-    )
+        bound to follow their instructions.`
   },
   {
     heading: "Cookie Policy ",
-    content: (
-      <p>
-        Movonics uses a feature of Internet Web browsers called Cookies to
+    content: `Movonics uses a feature of Internet Web browsers called Cookies to
         collect and store anonymous browsing information of users. We also use
         Facebook pixel which is an analytical tool that helps us in keeping a
         track of conversion rate from Facebook Ads. Our main purpose of using
         Facebook pixel is to remarket our services to those who have already
-        interacted with our website.<br></br> Moreover, Google Tag Manager also
+        interacted with our website.${(
+          <br></br>
+        )} Moreover, Google Tag Manager also
         assists us in providing you with ads that maybe relevant to you. Here,
         it is important to mention that Google Tag Manager only collects
         aggregated data and does not collect IP addresses and any other specific
-        identifiers. <br></br> Users can refuse the use of cookies by changing
-        settings on their web browser.
-      </p>
-    )
+        identifiers. ${(
+          <br></br>
+        )} Users can refuse the use of cookies by changing
+        settings on their web browser.`
   },
   {
     heading: "Contact Information",
-    content: (
-      <p>
-        We appreciate the fact that you trust us regarding our data privacy
+    content: `We appreciate the fact that you trust us regarding our data privacy
         policy. If you have any queries about our data privacy practices, you
-        can reach out to us (email) or via (Phone number)
-      </p>
-    )
+        can reach out to us (email) or via (Phone number)`
   }
 ];
 
@@ -86,6 +76,7 @@ export const Privacy = () => {
         {policies.map((e, i) => {
           return (
             <div
+              key={i}
               style={{
                 marginBottom: "2rem"
               }}

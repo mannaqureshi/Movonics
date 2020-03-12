@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap");
+
+/* ant desing */
 .siq_bR {
   bottom: 5% !important;
   right: 2% !important;
@@ -7,6 +9,11 @@
   background-color: #f99f4e !important;
 }
 
+#titlediv.zsiq_cnt {
+  display: none;
+}
+
+/* custom css */
 *,
 *::before,
 *::after {
@@ -30,7 +37,7 @@ html {
 }
 
 .page {
-  padding: 5rem 0rem;
+  padding: 2rem 0rem;
 }
 
 .black {
@@ -47,11 +54,11 @@ html {
   color: #aaaaaa;
 }
 p.heading-large {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 900;
 }
 p.heading-semi-large {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 500;
 }
 

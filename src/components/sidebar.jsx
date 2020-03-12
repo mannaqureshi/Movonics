@@ -53,12 +53,13 @@ export const Sidebar = withRouter(props => {
             activeClassName="nav-link-active"
             to="/policy"
           >
-            Priacy & Policy
+            Privacy Policy
           </NavLink>
           <div>
             <CustomButton
               onClick={() => {
                 props.history.push("/");
+                props.toggleSidebar();
                 setTimeout(() => {
                   scrollTo("#masterform", {
                     offset: -100,

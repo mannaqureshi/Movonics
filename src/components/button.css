@@ -1,6 +1,9 @@
 .custom-button,
 input[type="submit"] {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding: 10px 20px;
   border-radius: 60px;
   border: 1px solid #f99f4e;
@@ -26,4 +29,8 @@ input[type="submit"] {
   border: 1px solid #25d366;
   background-color: #fff;
   color: #25d366;
+}
+
+.whatsapp ion-icon {
+  font-size: 2rem;
 }

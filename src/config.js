@@ -14,7 +14,7 @@ const scrollToForm = () => {
   });
 };
 const callUs = () => {
-  window.open('href="tel:0558276209"');
+  window.open("tel:0558276209");
 };
 const whatsappUs = () => {
   window.open(
@@ -37,7 +37,8 @@ const CallToAction = {
   first: <CustomButton onClick={scrollToForm}>Get A Quote</CustomButton>,
   second: (
     <CustomButton whatsapp={true} onClick={whatsappUs}>
-      WhatsApp
+      <ion-icon name="logo-whatsapp"></ion-icon>
+      <span>WhatsApp</span>
     </CustomButton>
   )
 };
@@ -46,30 +47,31 @@ const sections = [
   {
     content: toBeChanged => (
       <Fragment>
-        <div style={{ display: "flex" }}>
-          {isMobile && (
+        {isMobile && (
+          <div style={{ display: "flex" }}>
             <div style={{ marginRight: "1rem" }}>{CallToAction.first}</div>
-          )}
-          {isMobile && <div>{CallToAction.second}</div>}
-        </div>
+            <div>{CallToAction.second}</div>
+          </div>
+        )}
 
         <p
           style={{ color: GlobalConfig.black }}
           className="heading-large black"
         >
-          When You Put Your Life In Boxes, It Matters Who Carries Them.
-        </p>
-
-        <p className="heading-semi-large grey">
           Book your move in {toBeChanged} with Movonics. ​Local, Domestic or
           Commercial Move Services.
         </p>
-        <div style={{ display: "flex" }}>
-          {!isMobile && (
+
+        <p className="heading-semi-large grey">
+          When You Put Your Life In Boxes, It Matters Who Carries Them.
+        </p>
+        {!isMobile && (
+          <div style={{ display: "flex" }}>
             <div style={{ marginRight: "1rem" }}>{CallToAction.first}</div>
-          )}
-          {!isMobile && <div>{CallToAction.second}</div>}
-        </div>
+            <div>{CallToAction.second}</div>
+          </div>
+        )}
+        <div style={{ display: "flex" }}></div>
       </Fragment>
     ),
     imageLink: asset1,
@@ -79,7 +81,7 @@ const sections = [
     isSection: "Our Services",
     content: toBeChanged => (
       <Fragment>
-        <p className="heading-primary black">Local/Domestic Move</p>
+        <p className="heading-primary black">Local & Domestic Move</p>
         <p className="heading-secondary blue">
           We will make your residential move day, a family day
         </p>
@@ -98,7 +100,7 @@ const sections = [
       </Fragment>
     ),
     imageLink: asset2,
-    traditional: true
+    traditional: false
   },
 
   {
@@ -164,12 +166,12 @@ const sections = [
       </Fragment>
     ),
     imageLink: asset3,
-    traditional: false
+    traditional: true
   }
 ];
 const pageTitle = name => "Movers in " + name;
 // const baseURL = `http://localhost:5000`;
-const baseURL = `ec2-13-58-13-167.us-east-2.compute.amazonaws.com:5000`;
+const baseURL = `http://ec2-13-58-13-167.us-east-2.compute.amazonaws.com:5000`;
 
 export {
   GlobalConfig,

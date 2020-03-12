@@ -3,11 +3,12 @@ import React from "react";
 import "./index.css";
 import { render } from "react-dom";
 import { App } from "./App";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 render(
-  <HashRouter>
+  <BrowserRouter>
     <App></App>
-  </HashRouter>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
+// http://movonics.s3-website.ap-south-1.amazonaws.com/

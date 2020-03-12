@@ -12,20 +12,6 @@ const _NavBar = props => {
   };
   return (
     <Fragment>
-      <div className="container-fluid headline">
-        <div className="container">
-          <span
-            style={{
-              cursor: "pointer"
-            }}
-            onClick={() => {
-              window.open('href="tel:0558276209"');
-            }}
-          >
-            Call Us Now at 0558276209
-          </span>
-        </div>
-      </div>
       <div
         style={{
           position: "sticky",
@@ -35,12 +21,27 @@ const _NavBar = props => {
         }}
         className="container-fluid shadow"
       >
+        <div className="container-fluid headline">
+          <div className="container">
+            <p
+              style={{
+                cursor: "pointer"
+              }}
+              onClick={() => {
+                window.open("tel:0558276209");
+              }}
+              className="text-primary"
+            >
+              Call Us Now at +971 55 827 6209
+            </p>
+          </div>
+        </div>
         <div className="container">
           <nav className="nav">
             <div className="nav-left">
               <div className="nav-logo">
                 <Link to="/" onClick={navClickHandler}>
-                  <img src={logo}></img>
+                  <img src={logo} alt="movonics logo"></img>
                 </Link>
               </div>
             </div>

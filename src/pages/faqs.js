@@ -74,7 +74,6 @@ export const Faqs = () => {
                 background: GlobalConfig.white
               }}
               bordered={false}
-              defaultActiveKey={["1"]}
             >
               <Panel header={e.title} key={i}>
                 <p>{e.desc}</p>

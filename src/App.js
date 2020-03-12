@@ -9,6 +9,7 @@ import { Home } from "./pages/home";
 import { Paint } from "./pages/paint";
 import { Faqs } from "./pages/faqs";
 import { Privacy } from "./pages/privacy";
+import { ThankYou } from "./pages/thankyou";
 
 export const App = () => {
   const [isOpened, setiSeOpened] = useState(false);
@@ -35,6 +36,9 @@ export const App = () => {
           </Route>
           <Route path="/abudhabi" exact>
             <AbuDhabi />
+          </Route>
+          <Route path="/thankyou" exact>
+            <ThankYou />
           </Route>
           <Route path="/" exact>
             <Home />

@@ -10,7 +10,7 @@ const SectionList = ({ place }) => {
   const sectionsList = sections.map(
     ({ content, imageLink, traditional, isSection }, idx) => {
       return (
-        <Fragment>
+        <Fragment key={idx}>
           {isSection && (
             <Fragment>
               <MasterForm title="Get Free Quote" />
@@ -32,7 +32,7 @@ const SectionList = ({ place }) => {
                     className="section-image"
                     style={{ textAlign: `${traditional ? "right" : "left"}` }}
                   >
-                    <img src={imageLink}></img>
+                    <img src={imageLink} alt="section"></img>
                   </div>
                 </Fragment>
               ) : (
@@ -41,7 +41,7 @@ const SectionList = ({ place }) => {
                     className="section-image"
                     style={{ textAlign: `middle` }}
                   >
-                    <img src={imageLink}></img>
+                    <img src={imageLink} alt="section"></img>
                   </div>
                   <div className="section-content">{content(place)}</div>
                 </Fragment>

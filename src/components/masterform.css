@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 .form .form-field {
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
 }
@@ -25,13 +25,13 @@
 
 .ant-select-selection,
 .ant-input:placeholder-shown,
-.masterform {
-  border: 1px solid #f99f4e !important;
+.ant-input {
+  border: 1.5px solid #f99f4e !important;
 }
 
 @media only screen and (max-width: 767px) {
   .masterform {
-    padding: 2rem;
+    padding: 0.5rem 2rem;
     width: 90%;
   }
 
