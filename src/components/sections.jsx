@@ -1,9 +1,6 @@
 import React, { Fragment } from "react";
 import { sections, pageTitle } from "../config";
 import "./sections.css";
-import { MasterForm } from "./masterform";
-
-import { Divider } from "./divider";
 
 const SectionList = ({ place }) => {
   document.title = pageTitle(place);
@@ -11,12 +8,6 @@ const SectionList = ({ place }) => {
     ({ content, imageLink, traditional, isSection }, idx) => {
       return (
         <Fragment key={idx}>
-          {isSection && (
-            <Fragment>
-              <MasterForm title="Get Free Quote" />
-              <Divider title="Our Services"></Divider>
-            </Fragment>
-          )}
           <div key={idx} className="container">
             <div
               style={{

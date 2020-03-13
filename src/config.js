@@ -4,7 +4,9 @@ import asset2 from "./content/family.svg";
 import asset3 from "./content/international.svg";
 import asset4 from "./content/commercial.svg";
 import asset5 from "./content/paint.svg";
+import asset6 from "./content/process.svg";
 import { CustomButton } from "./components/button";
+import { MasterForm } from "./components/masterform";
 import scrollTo from "scroll-to-element";
 
 const scrollToForm = () => {
@@ -75,6 +77,15 @@ const sections = [
       </Fragment>
     ),
     imageLink: asset1,
+    traditional: true
+  },
+  {
+    content: toBeChanged => (
+      <Fragment>
+        <MasterForm title="Get Quote" />
+      </Fragment>
+    ),
+    imageLink: asset6,
     traditional: true
   },
   {
