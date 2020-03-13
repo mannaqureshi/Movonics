@@ -76,6 +76,7 @@ const sections = [
         <div style={{ display: "flex" }}></div>
       </Fragment>
     ),
+
     imageLink: asset1,
     traditional: true
   },
@@ -85,6 +86,7 @@ const sections = [
         <MasterForm title="Get Quote" />
       </Fragment>
     ),
+    reverse: true,
     imageLink: asset6,
     traditional: true
   },

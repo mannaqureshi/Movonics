@@ -5,6 +5,7 @@ import scrollTo from "scroll-to-element";
 import { Input, DatePicker, Form, Select, message } from "antd";
 import Autocomplete from "react-google-autocomplete";
 import axios from "axios";
+import { sections } from "../content";
 import { CustomButton } from "../components/button";
 import { baseURL } from "../config";
 import "../components/masterform.css";
@@ -12,6 +13,7 @@ import "antd/dist/antd.css";
 
 import SVG from "../content/paint.svg";
 import { withRouter } from "react-router-dom";
+import { SectionList } from "../components/sections";
 
 export const Options = {
   Request_Type: [
@@ -69,7 +71,7 @@ const FormKeys = {
   Web_Source: "Web_Source"
 };
 
-const PaintForm = withRouter(
+export const PaintForm = withRouter(
   class PaintForm extends React.Component {
     constructor(props) {
       super(props);
@@ -137,8 +139,8 @@ const PaintForm = withRouter(
     render() {
       return (
         <Fragment>
-          <Divider title="Get Paint Quote"></Divider>
-          <div className="container masterform shadow" id="masterform">
+          <Divider type={2} title="Get Paint Quote"></Divider>
+          <div className="container masterform shadow" id="paintForm">
             <Form className="form">
               <div className="form-field">
                 <label>What do you need painted?</label>
@@ -342,73 +344,10 @@ const PaintForm = withRouter(
   }
 );
 
-const content = (
-  <p className="text-primary">
-    Movonics offers paint services in UAE, where our team of professional
-    painters takes care of all your paint requirements. From choosing the best
-    color and quality of paint, to mixing and applying to the walls. From
-    painting the wall from scratch or covering up the mistakes made by rookie
-    painters Movonics, a team of professionals knows their paint job and is
-    trusted by thousands of satisfied customers all over UAE. <br />
-    Our trusted painters are known for their compliance, professionalism and
-    adherence to the client’s requirement. Our painters, are trained to perform
-    tasks using modern day painting techniques, ensuring efficient utilization
-    of paint.
-  </p>
-);
-
 export const Paint = () => {
   return (
     <Fragment>
-      <div className="container">
-        <p className="heading-secondary blue">
-          Worried about choosing the best paint services for your wall?
-        </p>
-        <div
-          style={{
-            display: `${window.innerWidth > 767 ? `flex` : "block"}`
-          }}
-        >
-          {window.innerWidth > 767 ? (
-            <Fragment>
-              <div className="section-content">{content}</div>
-              <div className="section-image">
-                <img src={SVG} alt="paint"></img>
-              </div>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <div className="section-image" style={{ textAlign: `middle` }}>
-                <img src={SVG} alt="paint"></img>
-              </div>
-              <div className="section-content">{content}</div>
-            </Fragment>
-          )}
-        </div>
-        <PaintForm></PaintForm>
-        <p className="heading-secondary blue">
-          Eco-Friendly Paints that guarantee long lasting paint finishes
-        </p>
-        <p className="text-primary">
-          Movonics, ensures uncompromised standards of quality and safety for
-          its customers. Not only is the paint itself easy on the pocket, but
-          our painters also ensure that all the health and legal standards are
-          met for client and our painters. Our Team of Professional Painters
-          ensure selection of Eco-Friendly Paints that guarantee long lasting
-          paint finishes which serves to everyone’s benefit. Our specially
-          trained paint team, makes sure that our skilled painters avoid all the
-          common mistakes committed by local painters. We adopt practices that
-          ensure the safety of your household stuff from damage and wet paint.
-          <br />
-          Free survey and consultation on painting ideas makes us unique. We
-          strive to provide our clients with state-of-the-art painting methods,
-          techniques and paint designs that makes your walls, villas and homes
-          inimitable. From painting one-bedroom apartment to three-bedroom
-          house, whether it is painting Mansions or estimating about your Villa
-          Paint, from wall paint to ceiling paint. Movonics paint services are
-          trusted and are UAE’s # 1.
-        </p>
-      </div>
+      <SectionList sections={sections}></SectionList>
     </Fragment>
   );
 };

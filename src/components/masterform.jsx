@@ -147,7 +147,7 @@ export const MasterForm = withRouter(
       return (
         <Fragment>
           <Fragment>
-            <Divider title={this.props.title}></Divider>
+            <Divider type={1} title={this.props.title}></Divider>
             <div className="container masterform shadow" id="masterform">
               <Form className="form">
                 <div className="form-field">

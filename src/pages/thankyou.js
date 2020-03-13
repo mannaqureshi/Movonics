@@ -5,7 +5,7 @@ export const ThankYou = () => {
   return (
     <Fragment>
       <div className="page">
-        <Divider title="Thank you very much!"></Divider>
+        <Divider type={1} title="Thank you very much!"></Divider>
         <p
           className="text-primary"
           style={{

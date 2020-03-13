@@ -5,9 +5,21 @@
   justify-content: center;
   margin-bottom: 0.5rem;
 }
+
 .divider-container img {
   width: 9rem;
+}
+
+.divider-container .van {
   animation: move infinite ease-in-out 3s;
+}
+
+/* .divider-container .logo {
+  animation: pop infinite ease-in-out 1s;
+  animation-delay: 3s;
+} */
+.divider-container .roller {
+  animation: move infinite ease-in-out 2s;
 }
 
 .divider {
@@ -28,6 +40,15 @@
   left: 50%;
   background-color: #888;
   transform: translate(-50%, -50%);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
 }
 
 @keyframes move {
