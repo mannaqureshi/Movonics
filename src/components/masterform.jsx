@@ -27,13 +27,13 @@ export const Options = {
     "Domestic Move - Another City"
   ],
   "Scope Of Work": [
-    "Studio Apartment Move",
-    "1 Bedroom Apartment Move",
-    "2 Bedroom Apartment/House Move",
-    "3 Bedroom Apartment/House Move",
-    "4 Bedroom Apartment/House Move",
-    "5 Bedroom Apartment/House Move",
-    "6 Bedroom Apartment/House Move",
+    "Studio Apartment",
+    "1 Bedroom Apartment",
+    "2 Bedroom Apartment/House",
+    "3 Bedroom Apartment/House",
+    "4 Bedroom Apartment/House",
+    "5 Bedroom Apartment/House",
+    "6 Bedroom Apartment/House",
     "Single or Few Items",
     "Office/Commercial",
     "Other"
@@ -57,15 +57,15 @@ const Conditions = {
 
 const FormKeys = {
   Request_Type: "Request_Type",
-  Commercial_Move_Type: "Commercial_Move_Type",
-  Complete_Address: "Complete_Address",
+  Move_Type: "Move_Type",
+  Current_City: "Current_City",
   Estimated_Job_Date: "Estimated_Job_Date",
   Last_Name: "Last_Name",
   Email: "Email",
   Move_Size: "Move_Size",
   Mobile: "Mobile",
   Destination_Country: "Destination_Country",
-  Destination_Address: "Destination_Address"
+  Destination_City: "Destination_City"
 };
 
 export const MasterForm = withRouter(
@@ -74,15 +74,15 @@ export const MasterForm = withRouter(
       super(props);
       this.state = {
         Request_Type: "",
-        Commercial_Move_Type: "",
-        Complete_Address: "",
+        Move_Type: "",
+        Current_City: "",
         Estimated_Job_Date: "",
         Last_Name: "",
         Email: "",
         Move_Size: "",
         Mobile: "",
         Destination_Country: "",
-        Destination_Address: "",
+        Destination_City: "",
         Web_Source: "Movonics"
       };
     }
@@ -100,15 +100,10 @@ export const MasterForm = withRouter(
         if (
           (Request_Type == Conditions.requestType.B ||
             Request_Type == Conditions.requestType.D) &&
-          key == FormKeys.Commercial_Move_Type
+          key == FormKeys.Move_Type
         )
           return true;
 
-        if (
-          Request_Type != Conditions.moveType.B &&
-          key == FormKeys.Destination_Address
-        )
-          return true;
         if (
           Request_Type != Conditions.requestType.B &&
           key == FormKeys.Destination_Country
@@ -174,12 +169,8 @@ export const MasterForm = withRouter(
                       showSearch
                       placeholder="Move Type"
                       optionFilterProp="children"
-                      name="Commercial_Move_Type"
                       onChange={value => {
-                        this.genericHandler(
-                          FormKeys.Commercial_Move_Type,
-                          value
-                        );
+                        this.genericHandler(FormKeys.Move_Type, value);
                       }}
                     >
                       {Options["Move Type"].map((e, i) => (
@@ -226,25 +217,26 @@ export const MasterForm = withRouter(
                     placeholder="enter your current area or address"
                     onPlaceSelected={place => {
                       this.genericHandler(
-                        FormKeys.Complete_Address,
-                        place.name
+                        FormKeys.Current_City,
+                        place.formatted_address
                       );
                     }}
                     types={["establishment"]}
                     componentRestrictions={{ country: "ae" }}
                   />
                 </div>
-                {this.state.Commercial_Move_Type != Conditions.moveType.B && (
+                {this.state.Request_Type == Conditions.requestType.B ||
+                this.state.Request_Type == Conditions.requestType.D ||
+                this.state.Move_Type == Conditions.moveType.B ? null : (
                   <div className="form-field">
                     <label>Moving to</label>
-
                     <Autocomplete
                       className="ant-input"
                       placeholder="enter destination area or address"
                       onPlaceSelected={place => {
                         this.genericHandler(
-                          FormKeys.Destination_Address,
-                          place.name
+                          FormKeys.Destination_City,
+                          place.formatted_address
                         );
                       }}
                       types={["establishment"]}
@@ -261,7 +253,7 @@ export const MasterForm = withRouter(
                       onPlaceSelected={place => {
                         this.genericHandler(
                           FormKeys.Destination_Country,
-                          place.name
+                          place.formatted_address
                         );
                       }}
                       types={["(regions)"]}

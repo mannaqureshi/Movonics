@@ -25,8 +25,8 @@ const whatsappUs = () => {
   );
 };
 const GlobalConfig = {
-  primary_color: "#22D1EE",
-  secondary_color: "#F99F4E",
+  primary_color: "#2c348c",
+  secondary_color: "#ea7704",
   white: "#fff",
   black: "#333"
 };

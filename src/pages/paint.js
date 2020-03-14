@@ -96,6 +96,8 @@ export const PaintForm = withRouter(
     };
 
     submit = async () => {
+      console.log(this.state);
+
       const { Request_Type } = this.state;
       const valid = Object.keys(FormKeys).every(key => {
         if (
@@ -284,12 +286,15 @@ export const PaintForm = withRouter(
                 />
               </div>
               <div className="form-field">
-                <label>Current City</label>
+                <label>Current Address</label>
                 <Autocomplete
                   className="ant-input"
                   placeholder="enter your current area or address"
                   onPlaceSelected={place => {
-                    this.genericHandler(FormKeys.Current_City, place.name);
+                    this.genericHandler(
+                      FormKeys.Current_City,
+                      place.formatted_address
+                    );
                   }}
                   types={["establishment"]}
                   componentRestrictions={{ country: "ae" }}

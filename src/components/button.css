@@ -6,8 +6,8 @@ input[type="submit"] {
   align-items: center;
   padding: 10px 20px;
   border-radius: 60px;
-  border: 1px solid #f99f4e;
-  background-color: #f99f4e;
+  border: 1px solid #ea7704;
+  background-color: #ea7704;
   color: #fff;
   transition: all 0.2s linear;
   cursor: pointer;
@@ -15,8 +15,8 @@ input[type="submit"] {
 
 .custom-button:hover {
   background-color: #fff;
-  color: #f99f4e;
-  border: 1px solid #f99f4e;
+  color: #ea7704;
+  border: 1px solid #ea7704;
 }
 
 .whatsapp {

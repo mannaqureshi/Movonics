@@ -1,5 +1,5 @@
 .headline {
-  background-color: #f99f4e;
+  background-color: #ea7704;
   color: #fff;
 }
 
@@ -37,13 +37,13 @@
 }
 
 .nav-link {
-  color: #22d1ee;
+  color: #2c348c;
   font-weight: 500;
   font-size: 1.6rem;
   margin: 0px 1.5rem;
 }
 .nav-link-active {
-  border-bottom: 2px solid #f99f4e;
+  border-bottom: 2px solid #ea7704;
 }
 @media only screen and (max-width: 767px) {
   .nav .nav-left {
