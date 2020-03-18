@@ -5,6 +5,7 @@ import pf4 from "../content/pf1.svg";
 import pf2 from "../content/pf2.svg";
 import pf1 from "../content/pf3.svg";
 import pf3 from "../content/pf4.svg";
+
 import React, { Fragment } from "react";
 export const Home = () => (
   <Fragment>
