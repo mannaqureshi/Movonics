@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
 
 const policies = [
   {
@@ -32,9 +31,7 @@ const policies = [
   {
     heading: "Personal Information Collected",
     content: `When you fill out a form on our website 
-        ${(
-          <Link to="/">${"www.movonics.com"}</Link>
-        )}, you share your full name, email
+        "www.movonics.com", you share your full name, email
         address and telephone number with us. Movonics may also collect your IP
         address, browser type and location of your device. We also collect
         information regarding usage details that how many times you visit our
@@ -50,15 +47,13 @@ const policies = [
         Facebook pixel which is an analytical tool that helps us in keeping a
         track of conversion rate from Facebook Ads. Our main purpose of using
         Facebook pixel is to remarket our services to those who have already
-        interacted with our website.${(
-          <br></br>
-        )} Moreover, Google Tag Manager also
+        interacted with our website.
+         Moreover, Google Tag Manager also
         assists us in providing you with ads that maybe relevant to you. Here,
         it is important to mention that Google Tag Manager only collects
         aggregated data and does not collect IP addresses and any other specific
-        identifiers. ${(
-          <br></br>
-        )} Users can refuse the use of cookies by changing
+        identifiers. 
+         Users can refuse the use of cookies by changing
         settings on their web browser.`
   },
   {

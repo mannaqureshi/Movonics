@@ -23,6 +23,9 @@
   color: #fc436d;
 }
 
+.google-places-autocomplete__suggestion {
+  font-size: 1.3rem;
+}
 .ant-select-selection,
 .ant-input:placeholder-shown,
 .ant-input {

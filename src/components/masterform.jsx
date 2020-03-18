@@ -3,6 +3,9 @@ import { Input, DatePicker, Form, Select, message } from "antd";
 import { Divider } from "../components/divider";
 import Autocomplete from "react-google-autocomplete";
 import scrollTo from "scroll-to-element";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+// If you want to use the provided css
+import "react-google-places-autocomplete/dist/assets/index.css";
 
 /* global google */
 import axios from "axios";
@@ -27,16 +30,23 @@ export const Options = {
     "Domestic Move - Another City"
   ],
   "Scope Of Work": [
-    "Studio Apartment",
-    "1 Bedroom Apartment",
-    "2 Bedroom Apartment/House",
-    "3 Bedroom Apartment/House",
-    "4 Bedroom Apartment/House",
-    "5 Bedroom Apartment/House",
-    "6 Bedroom Apartment/House",
+    "Studio Apartment Move",
+    "1 Bedroom Apartment Move",
+    "2 Bedroom Apartment/House Move",
+    "3 Bedroom Apartment/House Move",
+    "4 Bedroom Apartment/House Move",
+    "5 Bedroom Apartment/House Move",
+    "6 Bedroom Apartment/House Move",
     "Single or Few Items",
-    "Office/Commercial",
     "Other"
+  ],
+  Lead_Source: [
+    "Google",
+    "Family/Friends",
+    "Real Estate",
+    "Phone Call",
+    "WhatsApp",
+    "Social Media"
   ]
 };
 
@@ -55,17 +65,31 @@ const Conditions = {
   }
 };
 
+const CountryOptions = {
+  componentRestrictions: {
+    country: "ae"
+  },
+  types: ["(regions)"]
+};
+const PlacesOptions = {
+  componentRestrictions: {
+    country: "ae"
+  },
+  types: ["establishment"]
+};
+
 const FormKeys = {
   Request_Type: "Request_Type",
   Move_Type: "Move_Type",
-  Current_City: "Current_City",
+  Complete_Address: "Complete_Address",
   Estimated_Job_Date: "Estimated_Job_Date",
   Last_Name: "Last_Name",
   Email: "Email",
   Move_Size: "Move_Size",
   Mobile: "Mobile",
   Destination_Country: "Destination_Country",
-  Destination_City: "Destination_City"
+  Destination_Address: "Destination_Address",
+  Lead_Source: "Lead_Source"
 };
 
 export const MasterForm = withRouter(
@@ -75,27 +99,48 @@ export const MasterForm = withRouter(
       this.state = {
         Request_Type: "",
         Move_Type: "",
-        Current_City: "",
+        Complete_Address: "",
+        Destination_Country: "",
+        Destination_Address: "",
+        Estimated_Job_Date: "",
+        Last_Name: "",
+        Email: "",
+        Move_Size: "",
+        Mobile: "",
+        Lead_Source: "",
+        Web_Source: "Movonics"
+      };
+    }
+
+    clearState = () => {
+      this.setState({
+        Request_Type: "",
+        Move_Type: "",
+        Complete_Address: "",
         Estimated_Job_Date: "",
         Last_Name: "",
         Email: "",
         Move_Size: "",
         Mobile: "",
         Destination_Country: "",
-        Destination_City: "",
+        Destination_Address: "",
+        Lead_Source: "",
         Web_Source: "Movonics"
-      };
-    }
-
+      });
+    };
     genericHandler = (key, value) => {
       this.setState({ [key]: value });
     };
-
+    validateEmail = email => {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    };
+    isNumber = value => {
+      var re = /^(?:\+971|00971|0)(?:2|3|4|6|7|9|50|51|52|55|56)[0-9]{7}$/;
+      return re.test(value);
+    };
     submit = async () => {
-      console.log(this.state);
-
-      const { Request_Type } = this.state;
-
+      const { Request_Type, Move_Type } = this.state;
       const valid = Object.keys(FormKeys).every(key => {
         if (
           (Request_Type == Conditions.requestType.B ||
@@ -109,6 +154,21 @@ export const MasterForm = withRouter(
           key == FormKeys.Destination_Country
         )
           return true;
+        if (
+          (Request_Type == Conditions.requestType.B &&
+            key == FormKeys.Destination_Address) ||
+          (Request_Type == Conditions.requestType.D &&
+            key == FormKeys.Destination_Address)
+        )
+          return true;
+        if (
+          Move_Type == Conditions.moveType.B &&
+          key == FormKeys.Destination_Address
+        )
+          return true;
+        if (key == FormKeys.Email) return this.validateEmail(this.state.Email);
+        if (key == FormKeys.Mobile) return this.isNumber(this.state.Mobile);
+
         const reuslt = this.state[key] != "";
         if (!reuslt) {
           console.log(key);
@@ -116,11 +176,13 @@ export const MasterForm = withRouter(
         return this.state[key] != "";
       });
       if (!valid) {
-        message.error("Please Fill all fields");
+        message.error(
+          "Please Fill all fields or make sure you have entered the right details"
+        );
         return;
       }
+      console.log(this.state);
       console.log("sent api call");
-
       try {
         const response = await axios.post(
           `${baseURL}/api/movonics/leads`,
@@ -130,6 +192,7 @@ export const MasterForm = withRouter(
           console.log(response.data);
 
           message.success("Processing Complete");
+          this.clearState();
           this.props.history.push("/thankyou");
           scrollTo("body");
         }
@@ -212,17 +275,17 @@ export const MasterForm = withRouter(
                 </div>
                 <div className="form-field">
                   <label>Moving From</label>
-                  <Autocomplete
-                    className="ant-input"
+                  <GooglePlacesAutocomplete
+                    autocompletionRequest={PlacesOptions}
+                    inputClassName="ant-input"
                     placeholder="enter your current area or address"
-                    onPlaceSelected={place => {
+                    onSelect={place => {
+                      console.log(place);
                       this.genericHandler(
-                        FormKeys.Current_City,
-                        place.formatted_address
+                        FormKeys.Complete_Address,
+                        place.description
                       );
                     }}
-                    types={["establishment"]}
-                    componentRestrictions={{ country: "ae" }}
                   />
                 </div>
                 {this.state.Request_Type == Conditions.requestType.B ||
@@ -230,33 +293,34 @@ export const MasterForm = withRouter(
                 this.state.Move_Type == Conditions.moveType.B ? null : (
                   <div className="form-field">
                     <label>Moving to</label>
-                    <Autocomplete
-                      className="ant-input"
+                    <GooglePlacesAutocomplete
+                      autocompletionRequest={PlacesOptions}
+                      inputClassName="ant-input"
                       placeholder="enter destination area or address"
-                      onPlaceSelected={place => {
+                      onSelect={place => {
+                        console.log(place);
                         this.genericHandler(
-                          FormKeys.Destination_City,
-                          place.formatted_address
+                          FormKeys.Destination_Address,
+                          place.description
                         );
                       }}
-                      types={["establishment"]}
-                      componentRestrictions={{ country: "ae" }}
                     />
                   </div>
                 )}
                 {this.state.Request_Type == Conditions.requestType.B && (
                   <div className="form-field">
                     <label>Moving to</label>
-                    <Autocomplete
-                      className="ant-input"
+                    <GooglePlacesAutocomplete
+                      autocompletionRequest={CountryOptions}
+                      inputClassName="ant-input"
                       placeholder="enter destnation country"
-                      onPlaceSelected={place => {
+                      onSelect={place => {
+                        console.log(place);
                         this.genericHandler(
                           FormKeys.Destination_Country,
-                          place.formatted_address
+                          place.description
                         );
                       }}
-                      types={["(regions)"]}
                     />
                   </div>
                 )}
@@ -288,6 +352,24 @@ export const MasterForm = withRouter(
                       this.genericHandler(FormKeys.Mobile, e.target.value);
                     }}
                   />
+                </div>
+
+                <div className="form-field">
+                  <label>How did you hear about us?</label>
+                  <Select
+                    showSearch
+                    optionFilterProp="children"
+                    placeholder="select"
+                    onChange={value => {
+                      this.genericHandler(FormKeys.Lead_Source, value);
+                    }}
+                  >
+                    {Options.Lead_Source.map((e, i) => (
+                      <Select.Option value={e} key={i}>
+                        {e}
+                      </Select.Option>
+                    ))}
+                  </Select>
                 </div>
 
                 <div>

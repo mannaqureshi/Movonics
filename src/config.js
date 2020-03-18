@@ -15,8 +15,11 @@ const scrollToForm = () => {
     duration: 1000
   });
 };
+const emailUs = () => {
+  window.open("mailto:support@movonics.com", "_self");
+};
 const callUs = () => {
-  window.open("tel:0558276209");
+  window.open("tel:0558276209", "_self");
 };
 const whatsappUs = () => {
   window.open(
@@ -83,7 +86,7 @@ const sections = [
   {
     content: toBeChanged => (
       <Fragment>
-        <MasterForm title="Get Quote" />
+        <MasterForm title="Get Free Quote" />
       </Fragment>
     ),
     reverse: true,
@@ -100,15 +103,15 @@ const sections = [
         </p>
 
         <p className="text-primary">
-          Have you just been through the nerve racking process of buying a new
-          house? Now, you must be considering relocating to your new house and
-          unable to find any reliable movers and packers in {toBeChanged}? To
-          take away all your worries, Movonics offers professional movers
-          services in
-          {toBeChanged}. We will take care of all your belongings and transfer
-          it to your new house. Our movers will pack all your belongings with
-          high quality packing material and load them in secure boxes to
-          transfer them to your new home in hassle free manner.
+          Have you just been through the nerve-racking process of buying or
+          renting a new house? Now, you must be considering relocating to your
+          new house and unable to find any reliable movers and packers in 
+          {toBeChanged}? To take away all your worries, Movonics offers
+          professional movers services in {toBeChanged}. We will take care of
+          all your belongings and transfer it to your new house. Our movers will
+          pack all your belongings with high quality packing material and load
+          them in secure boxes to transfer them to your new home in hassle free
+          manner.
         </p>
       </Fragment>
     ),
@@ -124,13 +127,13 @@ const sections = [
           Relocate your office with commercial moving experts in {toBeChanged}
         </p>
         <p className="text-primary">
-          Are you finding a trusted and reliable corporate relocation partner in
-          {toBeChanged}? Look no further, We’ve got you covered. To cater all
-          your office moving needs, Movonics is fully trusted and relied for
-          office and business moves. Our skilled moving specialists will
-          transfer your office furniture and workstations at your new office
-          with utmost care. Using high quality packing material, We ensure safe
-          and smooth transfer of your office equipment
+          Are you looking for a trusted and reliable corporate relocation
+          partner in {toBeChanged}? Look no further, we’ve got you covered. To
+          cater all your office moving needs, Movonics is fully trusted and
+          relied for office and business moves. Our skilled moving specialists
+          will transfer your office furniture and workstations at your new
+          office with utmost care. Using high quality packing material, we
+          ensure safe and smooth transfer of your office equipment.
         </p>
       </Fragment>
     ),
@@ -184,7 +187,7 @@ const sections = [
 ];
 const pageTitle = name => "Movers in " + name;
 // const baseURL = `http://localhost:5000`;
-const baseURL = `http://ec2-13-58-13-167.us-east-2.compute.amazonaws.com:5000`;
+const baseURL = `https://calm-dusk-85307.herokuapp.com`;
 
 export {
   GlobalConfig,
@@ -193,5 +196,6 @@ export {
   pageTitle,
   scrollToForm,
   callUs,
+  emailUs,
   whatsappUs
 };

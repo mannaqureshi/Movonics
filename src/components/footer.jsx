@@ -1,6 +1,6 @@
 import footerBackground from "../content/footer.svg";
 import React, { Fragment } from "react";
-import { GlobalConfig, callUs } from "../config";
+import { GlobalConfig, callUs, emailUs } from "../config";
 import visaSVG from "../content/visa.svg";
 import mastercardSVG from "../content/mastercard.svg";
 import { Link } from "react-router-dom";
@@ -33,7 +33,7 @@ const Footer = () => {
           <footer>
             <div className="footer">
               <div className="footer-left">
-                <p className="heading-secondary">How can we help</p>
+                <p className="heading-secondary">How can we help?</p>
                 <p className="heading-secondary">Contact Us anytime.</p>
                 <div className="footer-links">
                   <Link
@@ -75,11 +75,23 @@ const Footer = () => {
                 <div className="capsule shadow">
                   <div className="capsule-left">
                     <p className="text-secondary">SEND US EMAIL</p>
-                    <p className="text-secondary">support@movonics.com</p>
+                    <p
+                      className="text-secondary"
+                      style={{ cursor: "pointer" }}
+                      onClick={emailUs}
+                    >
+                      support@movonics.com
+                    </p>
                   </div>
                   <div className="capsule-right">
                     <p className="text-secondary">CALL US </p>
-                    <p className="text-secondary">0558276209</p>
+                    <p
+                      className="text-secondary"
+                      onClick={callUs}
+                      style={{ cursor: "pointer" }}
+                    >
+                      0558276209
+                    </p>
                   </div>
                 </div>
               </div>

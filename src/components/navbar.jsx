@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import scrollTo from "scroll-to-element";
 import logo from "../content/logo.svg";
 import { CustomButton } from "./button";
-import { GlobalConfig, scrollToForm } from "../config";
+import { GlobalConfig, scrollToForm, callUs } from "../config";
 import { NavLink, withRouter, Link } from "react-router-dom";
 import "./navbar.css";
 const _NavBar = props => {
@@ -27,9 +27,7 @@ const _NavBar = props => {
               style={{
                 cursor: "pointer"
               }}
-              onClick={() => {
-                window.open("tel:0558276209");
-              }}
+              onClick={callUs}
               className="text-primary"
             >
               Call Us Now at +971 55 827 6209

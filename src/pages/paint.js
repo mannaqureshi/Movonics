@@ -10,26 +10,32 @@ import { CustomButton } from "../components/button";
 import { baseURL } from "../config";
 import "../components/masterform.css";
 import "antd/dist/antd.css";
-
-import SVG from "../content/paint.svg";
 import { withRouter } from "react-router-dom";
 import { SectionList } from "../components/sections";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import "react-google-places-autocomplete/dist/assets/index.css";
 
+const PlacesOptions = {
+  componentRestrictions: {
+    country: "ae"
+  },
+  types: ["establishment"]
+};
 export const Options = {
-  Request_Type: [
+  What_do_you_need_painted: [
     "House/Villa",
     "Apartment",
     "Commercial/Warehouse",
     "Single/Few Walls"
   ],
-  Paint_Required_For: ["Furnished", "Unfurnished"],
-  Paint_Job_Description: [
-    "Studio Apartment Move",
-    "1 Bedroom Apartment Move",
-    "2 Bedroom Apartment/House Move",
-    "3 Bedroom Apartment/House Move",
-    "4 Bedroom Apartment/House Move",
-    "5 Bedroom Apartment/House Move",
+  House_Apartment_is: ["Furnished", "Unfurnished"],
+  Paint_Required_For: [
+    "Studio Apartment",
+    "1 Bedroom Apartment",
+    "2 Bedroom Apartment/House",
+    "3 Bedroom Apartment/House",
+    "4 Bedroom Apartment/House",
+    "5 Bedroom Apartment/House",
     "Single/Few Walls"
   ],
   Booleans: ["yes", "no"],
@@ -39,7 +45,7 @@ export const Options = {
     "Door(s) Painting",
     "Outdoor Paint"
   ],
-  Web_Source: [
+  Lead_Source: [
     "Google",
     "Family/Friends",
     "Real Estate",
@@ -57,10 +63,10 @@ const Conditions = {
 };
 
 const FormKeys = {
-  Request_Type: "Request_Type",
-  Paint_Job_Description: "Paint_Job_Description",
-  Paint_Survey_Date_Time: "Paint_Survey_Date_Time",
+  What_do_you_need_painted: "What_do_you_need_painted",
   Paint_Required_For: "Paint_Required_For",
+  Paint_Survey_Date_Time: "Paint_Survey_Date_Time",
+  House_Apartment_is: "House_Apartment_is",
   Ceilings_Paint: "Ceilings_Paint",
   Paint_Type: "Paint_Type",
   Estimated_Job_Date: "Estimated_Job_Date",
@@ -68,7 +74,7 @@ const FormKeys = {
   Email: "Email",
   Mobile: "Mobile",
   Current_City: "Current_City",
-  Web_Source: "Web_Source"
+  Lead_Source: "Lead_Source"
 };
 
 export const PaintForm = withRouter(
@@ -76,10 +82,11 @@ export const PaintForm = withRouter(
     constructor(props) {
       super(props);
       this.state = {
-        Request_Type: "",
-        Paint_Job_Description: "",
-        Paint_Survey_Date_Time: "",
+        Request_Type: "Paint Services",
+        What_do_you_need_painted: "",
         Paint_Required_For: "",
+        Paint_Survey_Date_Time: "",
+        House_Apartment_is: "",
         Ceilings_Paint: "",
         Paint_Type: "",
         Estimated_Job_Date: "",
@@ -87,29 +94,57 @@ export const PaintForm = withRouter(
         Email: "",
         Mobile: "",
         Current_City: "",
-        Web_Source: ""
+        Lead_Source: "",
+        Web_Source: "Movonics"
       };
     }
-
+    clearState = () => {
+      this.setState({
+        Request_Type: "Paint Services",
+        What_do_you_need_painted: "",
+        Paint_Required_For: "",
+        Paint_Survey_Date_Time: "",
+        House_Apartment_is: "",
+        Ceilings_Paint: "",
+        Paint_Type: "",
+        Estimated_Job_Date: "",
+        Last_Name: "",
+        Email: "",
+        Mobile: "",
+        Current_City: "",
+        Lead_Source: "",
+        Web_Source: "Movonics"
+      });
+    };
     genericHandler = (key, value) => {
       this.setState({ [key]: value });
+    };
+    validateEmail = email => {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    };
+    isNumber = value => {
+      var re = /^(?:\+971|00971|0)(?:2|3|4|6|7|9|50|51|52|55|56)[0-9]{7}$/;
+      return re.test(value);
     };
 
     submit = async () => {
       console.log(this.state);
-
-      const { Request_Type } = this.state;
+      const { What_do_you_need_painted } = this.state;
       const valid = Object.keys(FormKeys).every(key => {
         if (
-          Request_Type == Conditions.C &&
-          key == FormKeys.Paint_Job_Description
+          What_do_you_need_painted == Conditions.C &&
+          key == FormKeys.Paint_Required_For
         )
           return true;
         if (
-          Request_Type != Conditions.C &&
+          What_do_you_need_painted != Conditions.C &&
           key == FormKeys.Paint_Survey_Date_Time
         )
           return true;
+        if (key == FormKeys.Email) return this.validateEmail(this.state.Email);
+        if (key == FormKeys.Mobile) return this.isNumber(this.state.Mobile);
+
         const reuslt = this.state[key] != "";
         if (!reuslt) {
           console.log(key);
@@ -117,9 +152,12 @@ export const PaintForm = withRouter(
         return this.state[key] != "";
       });
       if (!valid) {
-        message.error("Please Fill all fields");
+        message.error(
+          "Please Fill all fields or make sure you have entered the right details"
+        );
         return;
       }
+      console.log("api send");
 
       try {
         const response = await axios.post(
@@ -130,6 +168,7 @@ export const PaintForm = withRouter(
           console.log(response.data);
 
           message.success("Processing Complete");
+          this.clearState();
           this.props.history.push("/thankyou");
           scrollTo("body");
         }
@@ -141,7 +180,7 @@ export const PaintForm = withRouter(
     render() {
       return (
         <Fragment>
-          <Divider type={2} title="Get Paint Quote"></Divider>
+          <Divider type={2} title="Get Free Quote"></Divider>
           <div className="container masterform shadow" id="paintForm">
             <Form className="form">
               <div className="form-field">
@@ -149,11 +188,14 @@ export const PaintForm = withRouter(
                 <Select
                   showSearch
                   onChange={value => {
-                    this.genericHandler(FormKeys.Request_Type, value);
+                    this.genericHandler(
+                      FormKeys.What_do_you_need_painted,
+                      value
+                    );
                   }}
                   placeholder="select"
                 >
-                  {Options.Request_Type.map((e, i) => (
+                  {Options.What_do_you_need_painted.map((e, i) => (
                     <Select.Option value={e} key={i}>
                       {e}
                     </Select.Option>
@@ -161,7 +203,7 @@ export const PaintForm = withRouter(
                 </Select>
               </div>
 
-              {this.state.Request_Type == Conditions.C && (
+              {this.state.What_do_you_need_painted == Conditions.C && (
                 <div className="form-field">
                   <label>Paint Survey - Date/Time</label>
 
@@ -190,20 +232,17 @@ export const PaintForm = withRouter(
                   />
                 </div>
               )}
-              {this.state.Request_Type != Conditions.C && (
+              {this.state.What_do_you_need_painted != Conditions.C && (
                 <div className="form-field">
                   <label>Paint Size/Scope</label>
                   <Select
                     showSearch
                     placeholder="select"
                     onChange={value => {
-                      this.genericHandler(
-                        FormKeys.Paint_Job_Description,
-                        value
-                      );
+                      this.genericHandler(FormKeys.Paint_Required_For, value);
                     }}
                   >
-                    {Options.Paint_Job_Description.map((e, i) => (
+                    {Options.Paint_Required_For.map((e, i) => (
                       <Select.Option value={e} key={i}>
                         {e}
                       </Select.Option>
@@ -218,10 +257,10 @@ export const PaintForm = withRouter(
                   showSearch
                   placeholder="select"
                   onChange={value => {
-                    this.genericHandler(FormKeys.Paint_Required_For, value);
+                    this.genericHandler(FormKeys.House_Apartment_is, value);
                   }}
                 >
-                  {Options.Paint_Required_For.map((e, i) => (
+                  {Options.House_Apartment_is.map((e, i) => (
                     <Select.Option value={e} key={i}>
                       {e}
                     </Select.Option>
@@ -276,28 +315,27 @@ export const PaintForm = withRouter(
                   format={"YYYY/MM/DD"}
                 />
               </div>
-
+              <div className="form-field">
+                <label>Current Address</label>
+                <GooglePlacesAutocomplete
+                  autocompletionRequest={PlacesOptions}
+                  inputClassName="ant-input"
+                  placeholder="enter your current area or address"
+                  onSelect={place => {
+                    console.log(place);
+                    this.genericHandler(
+                      FormKeys.Current_City,
+                      place.description
+                    );
+                  }}
+                />
+              </div>
               <div className="form-field">
                 <label>Full Name</label>
                 <Input
                   onChange={e => {
                     this.genericHandler(FormKeys.Last_Name, e.target.value);
                   }}
-                />
-              </div>
-              <div className="form-field">
-                <label>Current Address</label>
-                <Autocomplete
-                  className="ant-input"
-                  placeholder="enter your current area or address"
-                  onPlaceSelected={place => {
-                    this.genericHandler(
-                      FormKeys.Current_City,
-                      place.formatted_address
-                    );
-                  }}
-                  types={["establishment"]}
-                  componentRestrictions={{ country: "ae" }}
                 />
               </div>
 
@@ -327,10 +365,10 @@ export const PaintForm = withRouter(
                   optionFilterProp="children"
                   placeholder="select"
                   onChange={value => {
-                    this.genericHandler(FormKeys.Web_Source, value);
+                    this.genericHandler(FormKeys.Lead_Source, value);
                   }}
                 >
-                  {Options.Web_Source.map((e, i) => (
+                  {Options.Lead_Source.map((e, i) => (
                     <Select.Option value={e} key={i}>
                       {e}
                     </Select.Option>
